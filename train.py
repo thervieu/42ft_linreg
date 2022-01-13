@@ -1,3 +1,5 @@
+import sys
+import os.path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -18,6 +20,11 @@ def train(x, y, theta0, theta1):
 def mse_(x, y, theta0, theta1):
     y_hat = predict(x, theta0, theta1)
     return np.sum(error(y_hat, y)**2) / len(y)
+
+if os.path.isfile('data.csv') is False:
+    print('please add data.csv file')
+    sys.exit()
+
 
 # get data
 data = pd.read_csv('data.csv')
@@ -49,7 +56,7 @@ print('\nnew thetas are\n{}\n{}'.format(theta0, theta1))
 np.savetxt('thetas.csv', [theta0, theta1])
 plt.plot(mses)
 
-plt.legend(['data_set', 'lin_reg'])
+plt.legend(['mse'])
 plt.title('Graph of the mse depending on the epochs')
 plt.xlabel("epochs")
 plt.ylabel("mean_squared_errors")
