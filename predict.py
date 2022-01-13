@@ -7,10 +7,10 @@ if os.path.isfile('thetas.csv') is False:
     np.savetxt('thetas.csv', np.asarray([0.0, 0.0]))
 
 with open('thetas.csv', newline='') as csvfile:
-    thetas = np.array(list((csv.reader(csvfile))))
+    thetas = np.array(list((csv.reader(csvfile)))).reshape(-1,1)
 
 while True:
-    print("Please write the kms ")
+    print("Please write the kms (positive integer)")
     print(">> ", end='')
     txt_input = input()
     if txt_input.isnumeric() is True:
